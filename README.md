@@ -9,6 +9,8 @@ The following graph will be used to demonstrate the functionality of the directe
 The `Graph` class should be instantiated with an array of edges:
 
 ```ruby
+# The first argument is the origin_vertex
+# and the second is the destination_vertex
 @ra = Edge.new("root", "a")
 @ab = Edge.new("a", "b")
 @bc = Edge.new("b", "c")
