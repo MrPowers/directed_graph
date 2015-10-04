@@ -4,7 +4,7 @@ The directed_graph gem is useful for modeling directed, acyclic, unweighted grap
 
 The following graph will be used to demonstrate the functionality of the directed_graph gem.
 
-![graph_example](https://github.com/MrPowers/directed_graph/blob/master/example/simple_directed_graph.png)
+![graph_example](https://github.com/MrPowers/directed_graph/blob/master/example/simple_directed_graph.png =300x300)
 
 The `Graph` class should be instantiated with an array of edges:
 
