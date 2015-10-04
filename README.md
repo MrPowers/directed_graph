@@ -1,8 +1,29 @@
-# DirectedGraph
+# directed_graph
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/directed_graph`. To experiment with that code, run `bin/console` for an interactive prompt.
+The directed_graph gem is useful for modeling directed, acyclic, unweighted graphs.  It provides methods to topologically sort graphs, find the shortest path between two vertices, and render the graphs and json for client-side graphing.
 
-TODO: Delete this and the text above, and describe your gem
+The following graph will be used to demonstrate the functionality of the directed_graph gem.
+
+![graph_example](https://github.com/MrPowers/directed_graph/blob/master/example/simple_directed_graph.png)
+
+The `Graph` class should be instantiated with an array of edges:
+
+```ruby
+@ra = Edge.new("root", "a")
+@ab = Edge.new("a", "b")
+@bc = Edge.new("b", "c")
+@bd = Edge.new("b", "d")
+@ae = Edge.new("a", "e")
+@de = Edge.new("d", "e")
+@edges = [@ra, @ab, @bc, @bd, @ae, @de]
+@graph = Graph.new(@edges)
+```
+
+The `@graph` object can be used to get a topological sorted array of the vertices:
+
+```ruby
+@graph.sorted_vertices # ["root", "a", "b", "d", "e", "c"]
+```
 
 ## Installation
 
@@ -12,27 +33,15 @@ Add this line to your application's Gemfile:
 gem 'directed_graph'
 ```
 
-And then execute:
+Require the gem in your code:
 
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install directed_graph
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake rspec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+```ruby
+require 'directed_graph'
+```
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/directed_graph.
+Bug reports and pull requests are welcome on GitHub at https://github.com/MrPowers/directed_graph.
 
 
 ## License
