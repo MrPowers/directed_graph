@@ -27,6 +27,15 @@ The `@graph` object can be used to get a topological sorted array of the vertice
 @graph.sorted_vertices # ["root", "a", "b", "d", "e", "c"]
 ```
 
+The `@graph` object can also be used to calculate the shortest path between two vertices:
+
+```ruby
+@graph.shortest_path("root", "e")) # %w|root a e|
+@graph.shortest_path("root", "blah")) # nil because the "blah" vertex doesn't exist
+@graph.shortest_path("d", "a")) # nil because the graph is directed and can't be traversed in the wrong direction
+```
+
+
 ## Installation
 
 Add this line to your application's Gemfile:
