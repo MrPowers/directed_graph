@@ -27,6 +27,8 @@ The `@graph` object can be used to get a topological sorted array of the vertice
 @graph.sorted_vertices # ["root", "a", "b", "d", "e", "c"]
 ```
 
+Here is an [awesome blog post](https://endofline.wordpress.com/2010/12/22/ruby-standard-library-tsort/) on topological sorting in Ruby with the `TSort` module.
+
 The `@graph` object can also be used to calculate the shortest path between two vertices:
 
 ```ruby
