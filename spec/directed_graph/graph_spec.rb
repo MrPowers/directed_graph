@@ -13,6 +13,20 @@ module DirectedGraph; describe Graph do
     @graph = Graph.new(@edges)
   end
 
+  context "#shortest_path" do
+    it "returns an array of the shortest path between vertices" do
+      expect(@graph.shortest_path("root", "e")).to eq %w|root a e|
+    end
+
+    it "returns nil when there is no path between two vertices" do
+      expect(@graph.shortest_path("root", "blah")).to eq nil
+    end
+
+    it "returns nil when the path is in the wrong direction (this is a directed graph)" do
+      expect(@graph.shortest_path("d", "a")).to eq nil
+    end
+  end
+
   context "#vertices" do
     it "creates an array of the vertices from the edges" do
       expect(@graph.vertices).to match_array %w|root a b c d e|
@@ -21,7 +35,7 @@ module DirectedGraph; describe Graph do
 
   context "#children" do
     it "returns the children of a vertex" do
-      expect(@graph.children("a")).to match_array %w|b e|
+      expect(@graph.send(:children, "a")).to match_array %w|b e|
     end
   end
 
@@ -35,7 +49,7 @@ module DirectedGraph; describe Graph do
   context "#vertices_and_children" do
     it "returns the vertices and their children vertices" do
       expected = [["root", ["a"]], ["a", ["b", "e"]], ["b", ["c", "d"]], ["c", []], ["d", ["e"]], ["e", []]]
-      expect(@graph.vertices_and_children).to eq expected
+      expect(@graph.send(:vertices_and_children)).to eq expected
     end
   end
 
