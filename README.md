@@ -37,6 +37,13 @@ The `@graph` object can also be used to calculate the shortest path between two 
 @graph.shortest_path("d", "a")) # nil because the graph is directed and can't be traversed in the wrong direction
 ```
 
+The `@graph` object can be used to calculate the longest path between two vertices:
+
+```ruby
+@graph.longest_path("root", "e")) # %w|root a b d e|
+@graph.longest_path("a", "c")) # %w|a b c|
+@graph.longest_path("d", "a")) # returns [] when the path doesn't exist
+```
 
 ## Installation
 

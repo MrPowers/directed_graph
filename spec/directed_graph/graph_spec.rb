@@ -13,6 +13,20 @@ module DirectedGraph; describe Graph do
     @graph = Graph.new(@edges)
   end
 
+  context "#vertices_longest_path_to_root" do
+    it "returns the vertices and the longest path to the vertex" do
+      expected = [
+        ["root", ["root"]],
+        ["a", ["root", "a"]],
+        ["b", ["root", "a", "b"]],
+        ["c", ["root", "a", "b", "c"]],
+        ["d", ["root", "a", "b", "d"]],
+        ["e", ["root", "a", "b", "d", "e"]]
+      ]
+      expect(@graph.vertices_longest_path_to_root("root")).to eq expected
+    end
+  end
+
   context "#shortest_path" do
     it "returns an array of the shortest path between vertices" do
       expect(@graph.shortest_path("root", "e")).to eq %w|root a e|
@@ -27,15 +41,47 @@ module DirectedGraph; describe Graph do
     end
   end
 
+  context "#longest_path" do
+    it "returns an array of the longest path between vertices" do
+      expect(@graph.longest_path("root", "e")).to eq %w|root a b d e|
+    end
+
+    it "returns the longest path when the origin_vertex isn't the root node" do
+      expect(@graph.longest_path("a", "c")).to eq %w|a b c|
+    end
+
+    it "returns [] when there isn't a path between two vertices" do
+      expect(@graph.longest_path("d", "a")).to eq []
+    end
+  end
+
   context "#vertices" do
     it "creates an array of the vertices from the edges" do
       expect(@graph.vertices).to match_array %w|root a b c d e|
     end
   end
 
+  context "#parents" do
+    it "returns the parents of a vertex" do
+      expect(@graph.send(:parents, "e")).to match_array %w|d a|
+    end
+
+    it "works when there is only one parent" do
+      expect(@graph.send(:parents, "b")).to match_array %w|a|
+    end
+
+    it "returns an empty array when there are no parents" do
+      expect(@graph.send(:parents, "root")).to eq []
+    end
+  end
+
   context "#children" do
     it "returns the children of a vertex" do
       expect(@graph.send(:children, "a")).to match_array %w|b e|
+    end
+
+    it "returns the empty array when there are no children" do
+      expect(@graph.send(:children, "e")).to eq []
     end
   end
 
