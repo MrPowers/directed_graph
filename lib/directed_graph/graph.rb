@@ -8,12 +8,6 @@ module DirectedGraph
       @edges = edges
     end
 
-    def vertices_longest_path_to_root(root_vertex)
-      vertices.map do |v|
-        [v, longest_path(root_vertex, v)]
-      end
-    end
-
     def vertices
       r = []
       edges.each {|e| r.push(e.origin_vertex, e.destination_vertex)}
@@ -43,8 +37,6 @@ module DirectedGraph
       end.inject([]) {|m, arr| m = arr if arr.length > m.length; m}
     end
 
-    private
-
     def children(vertex)
       edges.select {|e| e.origin_vertex == vertex}.map{|e| e.destination_vertex}
     end
@@ -52,6 +44,8 @@ module DirectedGraph
     def parents(vertex)
       edges.select {|e| e.destination_vertex == vertex}.map{|e| e.origin_vertex}
     end
+
+    private
 
     def vertices_and_children
       vertices.map {|v| [v, children(v)]}

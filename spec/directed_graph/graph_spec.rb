@@ -13,20 +13,6 @@ module DirectedGraph; describe Graph do
     @graph = Graph.new(@edges)
   end
 
-  context "#vertices_longest_path_to_root" do
-    it "returns the vertices and the longest path to the vertex" do
-      expected = [
-        ["root", ["root"]],
-        ["a", ["root", "a"]],
-        ["b", ["root", "a", "b"]],
-        ["c", ["root", "a", "b", "c"]],
-        ["d", ["root", "a", "b", "d"]],
-        ["e", ["root", "a", "b", "d", "e"]]
-      ]
-      expect(@graph.vertices_longest_path_to_root("root")).to eq expected
-    end
-  end
-
   context "#shortest_path" do
     it "returns an array of the shortest path between vertices" do
       expect(@graph.shortest_path("root", "e")).to eq %w|root a e|
