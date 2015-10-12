@@ -4,10 +4,10 @@ module DirectedGraph
 
     attr_reader :origin_vertex, :destination_vertex, :value
 
-    def initialize(origin_vertex, destination_vertex, value = nil)
-      @origin_vertex = origin_vertex
-      @destination_vertex = destination_vertex
-      @value = value
+    def initialize(args)
+      @origin_vertex = args.fetch(:origin_vertex)
+      @destination_vertex = args.fetch(:destination_vertex)
+      @value = args.fetch(:value, nil)
     end
 
   end

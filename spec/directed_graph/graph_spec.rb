@@ -3,12 +3,12 @@ require 'spec_helper'
 module DirectedGraph; describe Graph do
 
   before do
-    @ra = Edge.new("root", "a")
-    @ab = Edge.new("a", "b")
-    @bc = Edge.new("b", "c")
-    @bd = Edge.new("b", "d")
-    @ae = Edge.new("a", "e")
-    @de = Edge.new("d", "e")
+    @ra = Edge.new(origin_vertex: "root", destination_vertex: "a")
+    @ab = Edge.new(origin_vertex: "a", destination_vertex: "b")
+    @bc = Edge.new(origin_vertex: "b", destination_vertex: "c")
+    @bd = Edge.new(origin_vertex: "b", destination_vertex: "d")
+    @ae = Edge.new(origin_vertex: "a", destination_vertex: "e")
+    @de = Edge.new(origin_vertex: "d", destination_vertex: "e")
     @edges = [@ra, @ab, @bc, @bd, @ae, @de]
     @graph = Graph.new(@edges)
   end
