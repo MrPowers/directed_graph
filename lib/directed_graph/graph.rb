@@ -3,15 +3,18 @@ module DirectedGraph
   class Graph
 
     attr_reader :edges
+    attr_reader :vertices
 
     def initialize(edges)
       @edges = edges
+      build_vertices
     end
 
-    def vertices
+    def build_vertices
+      @vertices = { }
       r = []
       edges.each {|e| r.push(e.origin_vertex, e.destination_vertex)}
-      r.uniq
+      r.uniq.collect { |r| @vertices[r] => Vertex.new(r) }
     end
 
     def ordered_edges
