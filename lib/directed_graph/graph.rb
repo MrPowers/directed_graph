@@ -11,7 +11,7 @@ module DirectedGraph
     def vertices
       r = []
       edges.each {|e| r.push(e.origin_vertex, e.destination_vertex)}
-      r.uniq
+      r.uniq {|e| e.object_id}
     end
 
     def ordered_edges
