@@ -5,16 +5,12 @@ module DirectedGraph
     attr_reader :name
     attr_accessor :data
 
-    def initialize(name)
-      @name = name
+    def initialize(args)
+      @name = args.fetch(:name)
+      @data = args.fetch(:data, {})
     end
 
   end
 
 end
 
-
-Vertex:
-  - Uniq Id
-  - Data (hash of arbitrary data)
-  - Children Edges
