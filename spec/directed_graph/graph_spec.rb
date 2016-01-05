@@ -36,15 +36,15 @@ module DirectedGraph; describe Graph do
 
   context "#longest_path" do
     it "returns an array of the longest path between vertices" do
-      expect(@graph.longest_path(@root, @e)).to eq [@root, @a, @b, @d, @e]
+      expect(@graph.longest_path("root", @e)).to eq [@root, @a, @b, @d, @e]
     end
 
     it "returns the longest path when the origin_vertex isn't the root node" do
-      expect(@graph.longest_path(@a, @c)).to eq [@a, @b, @c]
+      expect(@graph.longest_path("a", @c)).to eq [@a, @b, @c]
     end
 
     it "returns [] when there isn't a path between two vertices" do
-      expect(@graph.longest_path(@d, @a)).to eq []
+      expect(@graph.longest_path("d", @a)).to eq []
     end
   end
 
