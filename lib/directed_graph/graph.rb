@@ -4,7 +4,7 @@ module DirectedGraph
 
     attr_reader :edges
 
-    def initialize(edges)
+    def initialize(edges = [])
       @edges = edges
     end
 
@@ -30,19 +30,19 @@ module DirectedGraph
       simple_graph.shortest_path(origin_vertex, destination_vertex)
     end
 
-    def longest_path(origin_vertex, destination_vertex, result = [])
-      return [destination_vertex] + result if origin_vertex == destination_vertex
+    def longest_path(origin_vertex_name, destination_vertex, result = [])
+      return [destination_vertex] + result if origin_vertex_name == destination_vertex.name
       parents(destination_vertex).map do |v|
-        longest_path(origin_vertex, v, [destination_vertex] + result)
+        longest_path(origin_vertex_name, v, [destination_vertex] + result)
       end.inject([]) {|m, arr| m = arr if arr.length > m.length; m}
     end
 
     def children(vertex)
-      edges.select {|e| e.origin_vertex == vertex}.map{|e| e.destination_vertex}
+      edges.select {|e| e.origin_vertex.name == vertex.name}.map{|e| e.destination_vertex}
     end
 
     def parents(vertex)
-      edges.select {|e| e.destination_vertex == vertex}.map{|e| e.origin_vertex}
+      edges.select {|e| e.destination_vertex.name == vertex.name}.map{|e| e.origin_vertex}
     end
 
     private
