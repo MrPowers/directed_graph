@@ -99,5 +99,12 @@ module DirectedGraph; describe Graph do
     end
   end
 
+  context "#to_graphml" do
+    it "outputs the graph in graphml format" do
+      expect(@graph.to_graphml()).not_to be_empty
+    end
+  end
+
+
 end; end
 

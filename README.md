@@ -53,6 +53,28 @@ The `@graph` object can be used to calculate the longest path between two vertic
 @graph.longest_path(@d, @a) # returns [] when the path doesn't exist
 ```
 
+The `@graph` object can be used to generate a graphml file
+
+```ruby
+require 'color-generator'
+
+generator = ColorGenerator.new saturation: 0.3, lightness: 0.75
+
+# Set the color and label of each vertex
+#
+@graph.vertices.each do |vertex|
+  color = generator.create_hex
+  label = vertex.name
+
+  vertex.data[:graphics]  = {:fill=>["##{color}"], :label=>[label], :group=>color}
+end
+
+# Generate a graphml file
+# Import this file into program like yEd to size nodes and layout graph
+File.open("output.graphml", "w+") { |f| f.write(@graph.to_graphml())}
+```
+
+
 ## Installation
 
 Add this line to your application's Gemfile:
